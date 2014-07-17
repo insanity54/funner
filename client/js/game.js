@@ -1,0 +1,79 @@
+window.onload = function() {
+    document.body.innerText = 'test';
+
+
+    // global vars
+    var state;
+    var renderer;
+    var fellowTints = [];
+
+    
+    // init
+    stage = new PIXI.Stage(0x003300);
+    renderer = PIXI.autoDetectRenderer(400, 300);
+    
+    document.body.appendChild(renderer.view);
+    requestAnimFrame(animate);
+    
+//    var guyAtlas = ["./assets/img/guy.json"];
+//    var loader = new PIXI.AssetLoader(guyAtlas);
+    
+    var gameContainer = new PIXI.DisplayObjectContainer();
+    
+    stage.addChild(gameContainer);
+    
+    document.body.appendChild(renderer.view);
+    
+//    loader.onComplete = onGuyLoaded;
+//    loader.load();
+
+
+    function onGuyLoaded() {
+	var randomGuyFrame = [];
+	
+    }
+
+
+    function createFellow() {
+	var fellowTexture = PIXI.Texture.fromImage("./assets/img/fellow.png");
+	fellow = new PIXI.Sprite(fellowTexture);
+	fellow.position.x = 0;
+	fellow.position.y = 0;
+	fellow.scale.x = 0.5
+	fellow.scale.y = 0.5;
+
+	fellow.tint = Math.random() * 0xFFFFFF;
+
+	stage.addChild(fellow);
+
+    }
+
+
+    var guyTexture = PIXI.Texture.fromImage("./assets/img/dude1.png");
+    guy = new PIXI.Sprite(guyTexture);
+    
+    guy.anchor.x = 0.5;
+    guy.anchor.y = 0.5;
+    
+    guy.position.x = 200;
+    guy.position.y = 150;
+
+
+    stage.addChild(guy);
+    
+    createFellow();
+    
+    
+    function animate() {
+	requestAnimFrame(animate);
+	renderer.render(stage);
+	
+    }
+    
+    
+    
+    
+    
+    animate();
+    
+};
